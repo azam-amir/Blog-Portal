@@ -1,8 +1,9 @@
 import React from "react";
+import ReusableHeader from "../../common/Header/ReusableHeader";
 function AdminHome() {
   return (
     <div>
-      <h2>Welcome to dashboard</h2>
+      <ReusableHeader heading="Wellcome to dashboard" btnName="none" />
     </div>
   );
 }

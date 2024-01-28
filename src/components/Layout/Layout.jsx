@@ -41,13 +41,13 @@ const MainLayout = () => {
           items={sidebarItems}
         />
       </Sider>
-      <Layout>
-        <Header
+      <Layout style={{ background: "#f1f5f9" }}>
+        {/* <Header
           style={{
             padding: 0,
             background: colorBgContainer,
           }}
-        />
+        /> */}
         <Content
           style={{
             margin: "0 16px",
@@ -64,9 +64,6 @@ const MainLayout = () => {
           <div
             style={{
               padding: 24,
-              minHeight: 360,
-              background: colorBgContainer,
-              borderRadius: borderRadiusLG,
             }}
           >
             <Outlet />
@@ -75,6 +72,7 @@ const MainLayout = () => {
         <Footer
           style={{
             textAlign: "center",
+            background: "#f1f5f9",
           }}
         >
           Muhammad Azam Raza ©{new Date().getFullYear()} Created by
