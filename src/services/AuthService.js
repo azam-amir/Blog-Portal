@@ -5,6 +5,7 @@ const isUserLoggedIn = () => {
   if (!token) {
     return false;
   }
+  return true;
 };
 
 const getUserToken = () => {

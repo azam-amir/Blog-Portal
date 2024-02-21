@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="app">
       <BrowserRouter>
-        {!authenticated ? <AuthenticatedRoutes /> : <UnAuthenticatedRoutes />}
+        {authenticated ? <AuthenticatedRoutes /> : <UnAuthenticatedRoutes />}
       </BrowserRouter>
     </div>
   );

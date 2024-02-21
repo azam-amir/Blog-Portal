@@ -1,8 +1,10 @@
 import { Button } from "antd";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 function ReusableHeader(props) {
-  const { heading, btnName } = props;
+  const { heading, btnName, click } = props;
+  const navigate = useNavigate();
   return (
     <div
       style={{
@@ -17,7 +19,20 @@ function ReusableHeader(props) {
       }}
     >
       <h1 style={{ paddingBottom: "4px" }}>{heading}</h1>
-      {btnName === "none" ? "" : <Button type="primary">{btnName}</Button>}
+      {btnName === "none" ? (
+        ""
+      ) : (
+        <Button
+          onClick={
+            click === "category"
+              ? () => navigate("/category_add_edit")
+              : () => {}
+          }
+          type="primary"
+        >
+          {btnName}
+        </Button>
+      )}
     </div>
   );
 }

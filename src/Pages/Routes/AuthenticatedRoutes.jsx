@@ -7,6 +7,7 @@ import Categories from "../Admin/Caegories/Categories";
 import Comments from "../Admin/Comments/Comments";
 import Posts from "../Admin/Posts/Posts";
 import Users from "../Admin/Users/Users";
+import AddEditCategories from "../Admin/Caegories/AddEditCategory";
 
 function AuthenticatedRoutes() {
   return (
@@ -17,6 +18,7 @@ function AuthenticatedRoutes() {
         <Route path="/comments" element={<Comments />} />
         <Route path="/posts" element={<Posts />} />
         <Route path="/users" element={<Users />} />
+        <Route path="/category_add_edit" element={<AddEditCategories />} />
       </Route>
     </Routes>
   );
