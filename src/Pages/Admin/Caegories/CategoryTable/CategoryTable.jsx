@@ -20,14 +20,18 @@ function CategoryTable({ data }) {
       title: "Created At",
       id: "createdAt",
       render: (row) => {
-        return dayjs(row?.createdAt).format("YYYY-MM-DD HH:mm:ss") || "--";
+        return row?.createdAt
+          ? dayjs(row?.createdAt).format("YYYY-MM-DD HH:mm:ss")
+          : "--";
       },
     },
     {
       title: "Updated At",
       id: "updatedAt",
       render: (row) => {
-        return dayjs(row?.updatedAt).format("YYYY-MM-DD HH:mm:ss") || "--";
+        return row?.updatedAt
+          ? dayjs(row?.updatedAt).format("YYYY-MM-DD HH:mm:ss")
+          : "--";
       },
     },
     {

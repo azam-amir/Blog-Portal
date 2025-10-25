@@ -1,13 +1,10 @@
 import { Button, Popconfirm, Table } from "antd";
-import { useUserStore } from "../../../../store/usersStore/usersStore";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { ROUTE_CONSTANT } from "../../../Routes/route.constant";
 import dayjs from "dayjs";
+import { useNavigate } from "react-router-dom";
+import { useUserStore } from "../../../../store/usersStore/usersStore";
+import { ROUTE_CONSTANT } from "../../../Routes/route.constant";
 
 function UsersTable({ data }) {
-  const [isLoading, setIsLoading] = useState();
-
   const navigate = useNavigate();
   const { remove } = useUserStore();
 
@@ -23,14 +20,18 @@ function UsersTable({ data }) {
       title: "Created At",
       id: "createdAt",
       render: (row) => {
-        return dayjs(row?.createdAt).format("YYYY-MM-DD HH:mm:ss") || "--";
+        return row?.createdAt
+          ? dayjs(row?.createdAt).format("YYYY-MM-DD HH:mm:ss")
+          : "--";
       },
     },
     {
       title: "Updated At",
       id: "updatedAt",
       render: (row) => {
-        return dayjs(row?.updatedAt).format("YYYY-MM-DD HH:mm:ss") || "--";
+        return row?.updatedAt
+          ? dayjs(row?.updatedAt).format("YYYY-MM-DD HH:mm:ss")
+          : "--";
       },
     },
     {
@@ -60,7 +61,7 @@ function UsersTable({ data }) {
             okText="Yes"
             cancelText="No"
             onConfirm={() => remove(row?.id)}
-            okButtonProps={{ loading: isLoading }}
+            // okButtonProps={{ loading: isLoading }}
           >
             <Button danger type="primary">
               Delete

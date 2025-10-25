@@ -1,15 +1,11 @@
-import React, { useState } from "react";
-
-import { Breadcrumb, Layout, Menu, theme } from "antd";
-import { sidebarItems } from "./LayoutConstant";
+import { useState } from "react";
+import { Breadcrumb, Layout, Menu } from "antd";
 import { Outlet } from "react-router-dom/dist";
-const { Header, Content, Footer, Sider } = Layout;
+import { sidebarItems } from "./LayoutConstant";
+const { Content, Footer, Sider } = Layout;
 
 const MainLayout = () => {
   const [collapsed, setCollapsed] = useState(false);
-  const {
-    token: { colorBgContainer, borderRadiusLG },
-  } = theme.useToken();
   return (
     <Layout
       style={{
