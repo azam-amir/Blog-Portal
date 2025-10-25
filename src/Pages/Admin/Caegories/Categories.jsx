@@ -1,16 +1,22 @@
-import React from "react";
+import { useNavigate } from "react-router-dom";
 import ReusableHeader from "../../../common/Header/ReusableHeader";
+import { useCategoryStore } from "../../../store/categoryStore/categoryStore";
+import { ROUTE_CONSTANT } from "../../Routes/route.constant";
 import CategoryTable from "./CategoryTable/CategoryTable";
 
 function Categories() {
+  const navigate = useNavigate();
+
+  const { data } = useCategoryStore();
+
   return (
     <div>
       <ReusableHeader
         heading="Category"
         btnName="+ Add Category"
-        click="category"
+        buttonClick={() => navigate(ROUTE_CONSTANT.ADD_CATEGORY)}
       />
-      <CategoryTable />
+      <CategoryTable data={data} />
     </div>
   );
 }

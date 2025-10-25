@@ -7,14 +7,16 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "antd": "^5.13.2",
+    "antd": "^5.27.6",
     "apisauce": "^3.0.1",
+    "dayjs": "^1.11.18",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
     "recharts": "^2.11.0",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "zustand": "^5.0.8"
   },
   "scripts": {
     "start": "react-scripts start",

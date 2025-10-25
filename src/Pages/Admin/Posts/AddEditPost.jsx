@@ -1,16 +1,16 @@
 import { App, Button, Form, Input, Typography } from "antd";
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useCategoryStore } from "../../../store/categoryStore/categoryStore";
+import { usePostStore } from "../../../store/postsStore/postsStore";
 import { ROUTE_CONSTANT } from "../../Routes/route.constant";
 
-export default function AddEditCategories() {
+export default function AddEditPost() {
   const { id } = useParams();
 
   const { message } = App.useApp();
   const navigate = useNavigate();
   const { Title } = Typography;
-  const { data, add, update } = useCategoryStore();
+  const { data, add, update } = usePostStore();
   const [form] = Form.useForm();
 
   const getDataById = data?.find((item) => item?.id === id);
@@ -18,32 +18,32 @@ export default function AddEditCategories() {
   useEffect(() => {
     if (getDataById) {
       form.setFieldsValue({
-        cat_title: getDataById?.title,
+        post_title: getDataById?.title,
       });
     }
   }, [getDataById, id, form]);
 
   const onSubmitHandler = async (data) => {
     const payload = {
-      title: data?.cat_title,
+      title: data?.post_title,
     };
     const updatePayload = {
       ...getDataById,
-      title: data?.cat_title,
+      title: data?.post_title,
     };
     if (id) {
       try {
         await update(updatePayload);
-        message.success("Category is updated successfully!");
-        navigate(ROUTE_CONSTANT.CATEGORIES);
+        message.success("Post is updated successfully!");
+        navigate(ROUTE_CONSTANT.POSTS);
       } catch (error) {
         message.error("Something went wrong!");
       }
     } else {
       try {
         await add(payload);
-        message.success("Category is created successfully!");
-        navigate(ROUTE_CONSTANT.CATEGORIES);
+        message.success("Post is created successfully!");
+        navigate(ROUTE_CONSTANT.POSTS);
       } catch (error) {
         message.error("Something went wrong!");
       }
@@ -51,7 +51,7 @@ export default function AddEditCategories() {
   };
   return (
     <div>
-      <Title level={3}>{id ? "Update" : "Create"} Category</Title>
+      <Title level={3}>Create Post</Title>
       <Form
         form={form}
         onFinish={onSubmitHandler}
@@ -59,19 +59,19 @@ export default function AddEditCategories() {
         autoComplete="off"
       >
         <Form.Item
-          name="cat_title"
+          name="post_title"
           rules={[
             {
               required: true,
-              message: "Please input your category title!",
+              message: "Please input your post title!",
             },
           ]}
         >
-          <Input placeholder="Category Title" />
+          <Input placeholder="Post Title" />
         </Form.Item>
         <Form.Item>
           <Button type="primary" htmlType="submit">
-            {id ? "Update" : "Create"} Category
+            Create Post
           </Button>
         </Form.Item>
       </Form>
