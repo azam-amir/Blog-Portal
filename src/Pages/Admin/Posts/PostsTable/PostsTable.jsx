@@ -1,6 +1,7 @@
-import { Button, Popconfirm, Table } from "antd";
+import { Button, Image, Popconfirm, Tag } from "antd";
 import dayjs from "dayjs";
 import { useNavigate } from "react-router-dom";
+import CustomTable from "../../../../components/common/CustomTable/CustomTable";
 import { usePostStore } from "../../../../store/postsStore/postsStore";
 import { ROUTE_CONSTANT } from "../../../Routes/route.constant";
 
@@ -10,35 +11,105 @@ function PostsTable({ data }) {
 
   const columns = [
     {
-      title: "Category Title",
-      id: "title",
-      render: (row) => {
-        return row?.title || "--";
+      title: "Title",
+      dataIndex: "title",
+      key: "title",
+      render: (text) => text || "--",
+    },
+    {
+      title: "Category",
+      dataIndex: "category",
+      key: "category",
+      render: (text) => text || "--",
+    },
+    {
+      title: "Author",
+      dataIndex: "author",
+      key: "author",
+      render: (text) => text || "--",
+    },
+    {
+      title: "Date",
+      dataIndex: "date",
+      key: "date",
+      render: (date) => (date ? dayjs(date).format("YYYY-MM-DD") : "--"),
+    },
+    {
+      title: "Status",
+      dataIndex: "status",
+      key: "status",
+      render: (status) => {
+        const color =
+          status === "Published"
+            ? "green"
+            : status === "Draft"
+            ? "orange"
+            : "default";
+        return <Tag color={color}>{status || "--"}</Tag>;
+      },
+    },
+    {
+      title: "Tags",
+      dataIndex: "tags",
+      key: "tags",
+      render: (tags) =>
+        tags ? (
+          <div>
+            {tags.split(",").map((tag, index) => (
+              <Tag key={index}>{tag.trim()}</Tag>
+            ))}
+          </div>
+        ) : (
+          "--"
+        ),
+    },
+    {
+      title: "Image",
+      dataIndex: "image",
+      key: "image",
+      render: (image) => {
+        if (!image) return "--";
+
+        if (typeof image === "string") {
+          return <Image src={image} width={60} height={60} />;
+        }
+        if (image instanceof File || image instanceof Blob) {
+          return (
+            <Image src={URL.createObjectURL(image)} width={60} height={60} />
+          );
+        }
+        if (Array.isArray(image) && image[0]?.originFileObj) {
+          return (
+            <Image
+              src={URL.createObjectURL(image[0].originFileObj)}
+              width={60}
+              height={60}
+            />
+          );
+        }
+
+        return "--";
       },
     },
     {
       title: "Created At",
-      id: "createdAt",
-      render: (row) => {
-        return row?.createdAt
-          ? dayjs(row?.createdAt).format("YYYY-MM-DD HH:mm:ss")
-          : "--";
-      },
+      dataIndex: "createdAt",
+      key: "createdAt",
+      render: (date) =>
+        date ? dayjs(date).format("YYYY-MM-DD hh:mm A") : "--",
     },
     {
       title: "Updated At",
-      id: "updatedAt",
-      render: (row) => {
-        return row?.updatedAt
-          ? dayjs(row?.updatedAt).format("YYYY-MM-DD HH:mm:ss")
-          : "--";
-      },
+      dataIndex: "updatedAt",
+      key: "updatedAt",
+      render: (date) =>
+        date ? dayjs(date).format("YYYY-MM-DD hh:mm A") : "--",
     },
     {
-      title: "Edit",
-      id: "edit",
-      render: (row) => {
-        return (
+      title: "Actions",
+      key: "actions",
+      render: (row) => (
+        <div style={{ display: "flex", gap: "8px" }}>
           <Button
             type="primary"
             onClick={() =>
@@ -47,35 +118,22 @@ function PostsTable({ data }) {
           >
             Edit
           </Button>
-        );
-      },
-    },
-    {
-      title: "Delete",
-      id: "delete",
-      render: (row) => {
-        return (
           <Popconfirm
-            title="Are you sure to delete this user?"
-            description="This action cannot be undone."
+            title="Are you sure to delete this post?"
             okText="Yes"
             cancelText="No"
             onConfirm={() => remove(row?.id)}
-            // okButtonProps={{ loading: isLoading }}
           >
-            <Button danger type="primary">
-              Delete
-            </Button>
+            <Button danger>Delete</Button>
           </Popconfirm>
-        );
-      },
+        </div>
+      ),
     },
   ];
+
   return (
-    <div
-      style={{ marginTop: "50px", background: "white", borderRadius: "15px" }}
-    >
-      <Table dataSource={data} columns={columns} />
+    <div className="common_table_class">
+      <CustomTable dataSource={data} columns={columns} />
     </div>
   );
 }

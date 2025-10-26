@@ -4,6 +4,7 @@ import PostsTable from "./PostsTable/PostsTable";
 import { useNavigate } from "react-router-dom";
 import { ROUTE_CONSTANT } from "../../Routes/route.constant";
 import { usePostStore } from "../../../store/postsStore/postsStore";
+import BreadCrumbs from "../../../components/common/BreadCrumbs/BreadCrumbs";
 
 function Posts() {
   const navigate = useNavigate();
@@ -12,6 +13,7 @@ function Posts() {
 
   return (
     <div>
+      <BreadCrumbs items={[{ title: "Posts" }]} />
       <ReusableHeader
         heading="Posts"
         btnName="+ Add Posts"

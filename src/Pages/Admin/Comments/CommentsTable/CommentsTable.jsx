@@ -1,64 +1,57 @@
-import { Button, Image, Popconfirm } from "antd";
+import { Button, Popconfirm } from "antd";
 import dayjs from "dayjs";
 import { useNavigate } from "react-router-dom";
 import CustomTable from "../../../../components/common/CustomTable/CustomTable";
-import { useUserStore } from "../../../../store/usersStore/usersStore";
+import { useCommentsStore } from "../../../../store/commentsStore/commentsStore";
 import { ROUTE_CONSTANT } from "../../../Routes/route.constant";
 
-function UsersTable({ data }) {
+function CommentsTable({ data }) {
   const navigate = useNavigate();
-  const { remove } = useUserStore();
+  const { remove } = useCommentsStore();
 
   const columns = [
     {
-      title: "User Image",
-      dataIndex: "userImage",
-      key: "userImage",
-      render: (image) =>
-        image ? (
-          <Image
-            src={image}
-            alt="User"
-            width={50}
-            height={50}
-            style={{
-              borderRadius: "50%",
-              objectFit: "cover",
-            }}
-          />
-        ) : (
-          "--"
-        ),
-    },
-    {
-      title: "Username",
+      title: "User Name",
       dataIndex: "userName",
       key: "userName",
       render: (value) => value || "--",
     },
     {
-      title: "First Name",
-      dataIndex: "firstName",
-      key: "firstName",
+      title: "Post Name",
+      dataIndex: "postName",
+      key: "postName",
       render: (value) => value || "--",
     },
     {
-      title: "Last Name",
-      dataIndex: "lastName",
-      key: "lastName",
-      render: (value) => value || "--",
+      title: "Comment Content",
+      dataIndex: "commentContent",
+      key: "commentContent",
+      render: (value) =>
+        value?.length > 60 ? value.slice(0, 60) + "..." : value || "--",
     },
     {
-      title: "Email",
-      dataIndex: "email",
-      key: "email",
-      render: (value) => value || "--",
-    },
-    {
-      title: "Role",
-      dataIndex: "userRole",
-      key: "userRole",
-      render: (value) => value || "--",
+      title: "Status",
+      dataIndex: "commentStatus",
+      key: "commentStatus",
+      render: (status) => {
+        const color =
+          status === "approved"
+            ? "green"
+            : status === "pending"
+            ? "orange"
+            : "red";
+        return (
+          <span
+            style={{
+              color,
+              fontWeight: 600,
+              textTransform: "capitalize",
+            }}
+          >
+            {status || "--"}
+          </span>
+        );
+      },
     },
     {
       title: "Created At",
@@ -81,7 +74,7 @@ function UsersTable({ data }) {
         <Button
           type="primary"
           onClick={() =>
-            navigate(ROUTE_CONSTANT.EDIT_USERS.replace(":id", row?.id))
+            navigate(ROUTE_CONSTANT.EDIT_COMMENTS.replace(":id", row?.id))
           }
         >
           Edit
@@ -93,7 +86,7 @@ function UsersTable({ data }) {
       key: "delete",
       render: (row) => (
         <Popconfirm
-          title="Are you sure to delete this user?"
+          title="Are you sure to delete this comment?"
           description="This action cannot be undone."
           okText="Yes"
           cancelText="No"
@@ -114,4 +107,4 @@ function UsersTable({ data }) {
   );
 }
 
-export default UsersTable;
+export default CommentsTable;

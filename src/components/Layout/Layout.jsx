@@ -28,7 +28,7 @@ const MainLayout = () => {
           }}
           href="/"
         >
-          Blog Portal
+          {collapsed ? "BP" : "Blog Portal"}
         </h1>
         <Menu
           theme="dark"
@@ -38,28 +38,14 @@ const MainLayout = () => {
         />
       </Sider>
       <Layout style={{ background: "#f1f5f9" }}>
-        {/* <Header
-          style={{
-            padding: 0,
-            background: colorBgContainer,
-          }}
-        /> */}
         <Content
           style={{
             margin: "0 16px",
           }}
         >
-          <Breadcrumb
-            style={{
-              margin: "16px 0",
-            }}
-          >
-            <Breadcrumb.Item>User</Breadcrumb.Item>
-            <Breadcrumb.Item>Bill</Breadcrumb.Item>
-          </Breadcrumb>
           <div
             style={{
-              padding: 24,
+              padding: "24px 20px",
             }}
           >
             <Outlet />

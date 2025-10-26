@@ -3,6 +3,7 @@ import ReusableHeader from "../../../common/Header/ReusableHeader";
 import UsersTable from "./UsersTable/UsersTable";
 import { ROUTE_CONSTANT } from "../../Routes/route.constant";
 import { useUserStore } from "../../../store/usersStore/usersStore";
+import BreadCrumbs from "../../../components/common/BreadCrumbs/BreadCrumbs";
 
 function Users() {
   const navigate = useNavigate();
@@ -11,6 +12,7 @@ function Users() {
 
   return (
     <div>
+      <BreadCrumbs items={[{ title: "Users" }]} />
       <ReusableHeader
         heading="Users"
         btnName="+ Add Users"

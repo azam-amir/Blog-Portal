@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import ReusableHeader from "../../../common/Header/ReusableHeader";
+import BreadCrumbs from "../../../components/common/BreadCrumbs/BreadCrumbs";
 import { useCategoryStore } from "../../../store/categoryStore/categoryStore";
 import { ROUTE_CONSTANT } from "../../Routes/route.constant";
 import CategoryTable from "./CategoryTable/CategoryTable";
@@ -11,6 +12,7 @@ function Categories() {
 
   return (
     <div>
+      <BreadCrumbs items={[{ title: "Category" }]} />
       <ReusableHeader
         heading="Category"
         btnName="+ Add Category"

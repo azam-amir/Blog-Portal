@@ -1,6 +1,7 @@
-import { Button, Popconfirm, Table } from "antd";
+import { Button, Popconfirm } from "antd";
 import dayjs from "dayjs";
 import { useNavigate } from "react-router-dom";
+import CustomTable from "../../../../components/common/CustomTable/CustomTable";
 import { useCategoryStore } from "../../../../store/categoryStore/categoryStore";
 import { ROUTE_CONSTANT } from "../../../Routes/route.constant";
 
@@ -21,7 +22,7 @@ function CategoryTable({ data }) {
       id: "createdAt",
       render: (row) => {
         return row?.createdAt
-          ? dayjs(row?.createdAt).format("YYYY-MM-DD HH:mm:ss")
+          ? dayjs(row?.createdAt).format("YYYY-MM-DD hh:mm A:ss")
           : "--";
       },
     },
@@ -30,7 +31,7 @@ function CategoryTable({ data }) {
       id: "updatedAt",
       render: (row) => {
         return row?.updatedAt
-          ? dayjs(row?.updatedAt).format("YYYY-MM-DD HH:mm:ss")
+          ? dayjs(row?.updatedAt).format("YYYY-MM-DD hh:mm A:ss")
           : "--";
       },
     },
@@ -61,7 +62,6 @@ function CategoryTable({ data }) {
             okText="Yes"
             cancelText="No"
             onConfirm={() => remove(row?.id)}
-            // okButtonProps={{ loading: isLoading }}
           >
             <Button danger type="primary">
               Delete
@@ -72,10 +72,8 @@ function CategoryTable({ data }) {
     },
   ];
   return (
-    <div
-      style={{ marginTop: "50px", background: "white", borderRadius: "15px" }}
-    >
-      <Table dataSource={data} columns={columns} />
+    <div className="common_table_class">
+      <CustomTable dataSource={data} columns={columns} />
     </div>
   );
 }

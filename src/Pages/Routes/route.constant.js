@@ -1,6 +1,7 @@
 import AdminHome from "../Admin/AdminHome";
 import AddEditCategories from "../Admin/Caegories/AddEditCategory";
 import Categories from "../Admin/Caegories/Categories";
+import AddEditComment from "../Admin/Comments/AddEditComments";
 import Comments from "../Admin/Comments/Comments";
 import AddEditPost from "../Admin/Posts/AddEditPost";
 import Posts from "../Admin/Posts/Posts";
@@ -43,6 +44,14 @@ export const ROUTES = [
   {
     path: ROUTE_CONSTANT.COMMENTS,
     element: <Comments />,
+  },
+  {
+    path: ROUTE_CONSTANT.ADD_COMMENTS,
+    element: <AddEditComment />,
+  },
+  {
+    path: ROUTE_CONSTANT.EDIT_COMMENTS,
+    element: <AddEditComment />,
   },
   {
     path: ROUTE_CONSTANT.POSTS,

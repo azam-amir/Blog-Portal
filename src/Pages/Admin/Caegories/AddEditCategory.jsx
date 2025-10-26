@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useCategoryStore } from "../../../store/categoryStore/categoryStore";
 import { ROUTE_CONSTANT } from "../../Routes/route.constant";
+import BreadCrumbs from "../../../components/common/BreadCrumbs/BreadCrumbs";
 
 export default function AddEditCategories() {
   const { id } = useParams();
@@ -51,6 +52,13 @@ export default function AddEditCategories() {
   };
   return (
     <div>
+      <BreadCrumbs
+        items={[
+          { title: "Category", path: ROUTE_CONSTANT.CATEGORIES },
+          { title: id ? "Update" : "Create" },
+        ]}
+      />
+
       <Title level={3}>{id ? "Update" : "Create"} Category</Title>
       <Form
         form={form}
