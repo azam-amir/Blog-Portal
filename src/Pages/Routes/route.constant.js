@@ -3,6 +3,7 @@ import AddEditCategories from "../Admin/Caegories/AddEditCategory";
 import Categories from "../Admin/Caegories/Categories";
 import AddEditComment from "../Admin/Comments/AddEditComments";
 import Comments from "../Admin/Comments/Comments";
+import LoginPage from "../Admin/LoginPage/LoginPage";
 import AddEditPost from "../Admin/Posts/AddEditPost";
 import Posts from "../Admin/Posts/Posts";
 import AddEditUser from "../Admin/Users/AddEditUser";
@@ -22,6 +23,9 @@ export const ROUTE_CONSTANT = {
   USERS: "/users",
   ADD_USERS: "/users/add",
   EDIT_USERS: "/users/:id",
+};
+export const UNAUTHENTICATED_ROUTE_CONSTANT = {
+  LOGIN: "/",
 };
 
 export const ROUTES = [
@@ -76,5 +80,12 @@ export const ROUTES = [
   {
     path: ROUTE_CONSTANT.EDIT_USERS,
     element: <AddEditUser />,
+  },
+];
+
+export const UNAUTHENTICATED_ROUTES = [
+  {
+    path: UNAUTHENTICATED_ROUTE_CONSTANT.LOGIN,
+    element: <LoginPage />,
   },
 ];

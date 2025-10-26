@@ -12,6 +12,7 @@ function ReusableHeader(props) {
         justifyContent: "space-between",
         alignItems: "center",
         padding: "0px 30px 0px 25px",
+        marginTop: "30px",
       }}
     >
       <h1 style={{ paddingBottom: "4px" }}>{heading}</h1>

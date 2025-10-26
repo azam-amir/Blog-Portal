@@ -6,11 +6,12 @@ import { AuthService } from "./services/AuthService";
 
 function App() {
   const authenticated = AuthService.isUserLoggedIn();
+
   return (
     <ConfigProvider>
       <AntdApp>
         <BrowserRouter>
-          {!authenticated ? <AuthenticatedRoutes /> : <UnAuthenticatedRoutes />}
+          {authenticated ? <AuthenticatedRoutes /> : <UnAuthenticatedRoutes />}
         </BrowserRouter>
       </AntdApp>
     </ConfigProvider>

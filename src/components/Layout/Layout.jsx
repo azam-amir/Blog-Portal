@@ -1,7 +1,9 @@
+import { Layout, Menu } from "antd";
 import { useState } from "react";
-import { Breadcrumb, Layout, Menu } from "antd";
 import { Outlet } from "react-router-dom/dist";
 import { sidebarItems } from "./LayoutConstant";
+import { ROUTE_CONSTANT } from "../../Pages/Routes/route.constant";
+import ProfileMenu from "./ProfileMenu";
 const { Content, Footer, Sider } = Layout;
 
 const MainLayout = () => {
@@ -26,7 +28,7 @@ const MainLayout = () => {
             marginLeft: "-10px",
             cursor: "pointer",
           }}
-          href="/"
+          href={ROUTE_CONSTANT.HOME}
         >
           {collapsed ? "BP" : "Blog Portal"}
         </h1>
@@ -46,8 +48,10 @@ const MainLayout = () => {
           <div
             style={{
               padding: "24px 20px",
+              position: "relative",
             }}
           >
+            <ProfileMenu />
             <Outlet />
           </div>
         </Content>

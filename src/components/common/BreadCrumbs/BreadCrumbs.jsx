@@ -21,7 +21,7 @@ export default function BreadCrumbs({ items = [], showHome = true }) {
     <Breadcrumb
       items={finalItems}
       style={{
-        margin: "5px 0 16px 0",
+        margin: "7px 0 16px 0",
         fontSize: 16,
       }}
     />
